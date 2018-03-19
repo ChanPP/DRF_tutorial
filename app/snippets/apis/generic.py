@@ -1,10 +1,11 @@
 from rest_framework import generics
-from snippets.serializers import SnippetSerializer
+
 from ..models import Snippet
+from ..serializers import SnippetSerializer
 
 __all__ = (
-    "SnippetList",
-    "SnippetDetail",
+    'SnippetList',
+    'SnippetDetail',
 )
 
 

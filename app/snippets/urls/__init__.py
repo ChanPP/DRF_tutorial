@@ -1,6 +1,4 @@
-from .api_view import *
-from django.urls import include
-
+from django.urls import path, include
 
 app_name = 'snippets'
 urlpatterns = [

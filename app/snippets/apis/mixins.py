@@ -1,15 +1,17 @@
 from rest_framework import mixins, generics
 
-from snippets.serializers import SnippetSerializer
 from ..models import Snippet
+from ..serializers import SnippetSerializer
 
 __all__ = (
-    "SnippetList",
-    "SnippetDetail",
+    'SnippetList',
+    'SnippetDetail',
 )
 
 
-class SnippetList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+class SnippetList(mixins.ListModelMixin,
+                  mixins.CreateModelMixin,
+                  generics.GenericAPIView):
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
 
@@ -17,11 +19,13 @@ class SnippetList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Gener
         return self.list(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        return self.create(self, request, *args, **kwargs)
+        return self.create(request, *args, **kwargs)
 
 
-class SnippetDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
-                    generics.DestroyAPIView, generics.GenericAPIView):
+class SnippetDetail(mixins.RetrieveModelMixin,
+                    mixins.UpdateModelMixin,
+                    mixins.DestroyModelMixin,
+                    generics.GenericAPIView):
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
 
@@ -31,5 +35,5 @@ class SnippetDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
 
-    def destroy(self, request, *args, **kwargs):
+    def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)

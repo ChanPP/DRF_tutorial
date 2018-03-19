@@ -13,6 +13,10 @@ __all__ = (
 
 
 class SnippetList(APIView):
+    # /snippets/
+    # /snippets/api-view/
+    # snippets.urls.__init__
+    #   안에서 include를 사용 (불러오는 url은 'snippets.urls.api_view')
     def get(self, request, format=None):
         snippets = Snippet.objects.all()
         serializer = SnippetSerializer(snippets, many=True)
@@ -27,7 +31,8 @@ class SnippetList(APIView):
 
 
 class SnippetDetail(APIView):
-    # ex) /snippets/3/ <- 에 매칭되도록 url작성
+    # /snippets/3/
+    # /snippets/api-view/3/
     def get_object(self, pk):
         return get_object_or_404(Snippet, pk=pk)
 
