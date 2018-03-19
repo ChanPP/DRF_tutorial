@@ -19,5 +19,7 @@ class SnippetSerializer(serializers.ModelSerializer):
             'linenos',
             'language',
             'style',
+
             'owner',
+            'highlight',
         )
